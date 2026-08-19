@@ -50,19 +50,20 @@
   align-items: center;
   gap: 6px;
 
-  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+  cursor: url("cursors/pointer.png") 5 0, pointer;
 }
 
-.social-button img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: url("cursors/pointer.png") 0 0, pointer;
 }
 
-      .tree-view a {
+.tree-view a {
   color: #000;
   text-decoration: none;
-  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+  cursor: url("cursors/pointer.png") 0 0, pointer;
 }
 
 .tree-view a:hover {
@@ -121,36 +122,27 @@
 
 html,
 body {
-  cursor: url("/HIYAS/cursors/arrow.cur"), default;
+  cursor: url("cursors/arrow.png") 0 0, default;
 }
-
-
 
 a,
 button,
 summary,
 li[role="tab"] {
-  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+  cursor: url("cursors/pointer.png") 0 0, pointer;
 }
-
-
 
 button.help {
-  cursor: url("/HIYAS/cursors/help.cur"), help;
+  cursor: url("cursors/help.png") 0 0, help;
 }
-
-
 
 .gallery img {
-  cursor: url("/HIYAS/cursors/pen.cur"), crosshair;
-}
-#imagePopupTitlebar {
-  cursor: url("/HIYAS/cursors/move.cur"), move;
+  cursor: url("cursors/pen.png") 0 0, crosshair;
 }
 
-
+#imagePopupTitlebar,
 #projectsPopuptitlebar {
-  cursor: url("/HIYAS/cursors/move.cur"), move;
+  cursor: url("cursors/move.png") 16 16, move;
 }
   body {
     background-color: #C0C0C0; 
