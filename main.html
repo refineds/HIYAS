@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+.contact-form {
+  width: 450px;
+  max-width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.contact-form .field-row-stacked {
+  margin-bottom: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+      .social-buttons {
+  margin-top: 25px;
+   margin-left: 10px;
+
+  display: flex;
+  gap: 10px;
+}
+
+.social-link {
+  text-decoration: none;
+}
+
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+}
+
+.social-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+      .tree-view a {
+  color: #000;
+  text-decoration: none;
+  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+}
+
+.tree-view a:hover {
+  text-decoration: underline;
+}
+      .section-heading {
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+      .subtitle {
+  font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: thin;
+}
+
+      .image-popup {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.image-popup-window {
+  width: fit-content;
+  max-width: 90vw;
+}
+
+
+.enlarged-image-panel {
+  padding: 6px;
+  width: fit-content;
+  max-width: 85vw;
+  max-height: 75vh;
+  overflow: auto;
+}
+
+
+.enlarged-image-panel img {
+  display: block;
+  width: auto;
+  height: auto;
+
+  max-width: 82vw;
+  max-height: 70vh;
+}
+
+
+.image-popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+html,
+body {
+  cursor: url("/HIYAS/cursors/arrow.cur"), default;
+}
+
+
+
+a,
+button,
+summary,
+li[role="tab"] {
+  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+}
+
+
+
+button.help {
+  cursor: url("/HIYAS/cursors/help.cur"), help;
+}
+
+
+
+.gallery img {
+  cursor: url("/HIYAS/cursors/pen.cur"), crosshair;
+}
+#imagePopupTitlebar {
+  cursor: url("/HIYAS/cursors/move.cur"), move;
+}
+
+
+#projectsPopuptitlebar {
+  cursor: url("/HIYAS/cursors/move.cur"), move;
+}
+  body {
+    background-color: #C0C0C0; 
+  }
+  .popup-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0; 
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+
+  }
+  .popup-overlay{
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    pointer-events: auto;
+  }
+  #projectsPopup .window {
+  display: flex;
+  flex-direction: column;
+}
+
+#projectsPopup .window-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+#projectsPopup .sunken-panel {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+}
+
+#projectsPopup .ok-button-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+#projectsPopup .pricing-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#projectsPopup .pricing-table th,
+#projectsPopup .pricing-table td {
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  padding: 8px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  padding: 8px;
+}
+
+.image-frame {
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+}
+</style>
+  <title>Hiyas</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
+</head>
+
+<body> 
+    <div class="title-bar">
+  <div class="title-bar-text">HIYAS</div>
+  <div class="title-bar-controls">
+    <button aria-label="Minimize" disabled></button>
+    <button aria-label="Maximize" disabled></button>
+<button aria-label="Close" ; onclick="window.location='index.html'"></button>
+  </div>
+</div>
+<p class="subtitle">A collection of works that explore the romance of life.</p>
+<ul class="tree-view">
+  <li>Portfolio.main</li>
+  <li>What is there to see?</li>
+
+  <li>
+    <details open>
+  <summary>Illustration</summary>
+
+  <ul>
+    <li>
+      <a href="#portfolioTabs"
+         class="tree-tab-link"
+         data-tab="characters">
+        Characters
+      </a>
+    </li>
+
+    <li>
+      <a href="#portfolioTabs"
+         class="tree-tab-link"
+         data-tab="backgrounds">
+        Backgrounds
+      </a>
+    </li>
+
+    <li>
+      <a href="#portfolioTabs"
+         class="tree-tab-link"
+         data-tab="scenes">
+        Scenes
+      </a>
+    </li>
+
+    <li>
+      <a href="#portfolioTabs"
+         class="tree-tab-link"
+         data-tab="stream-elements">
+        Stream Elements
+      </a>
+    </li>
+  </ul>
+
+</details>
+
+<details open>
+  <summary>Graphic Design</summary>
+
+  <ul>
+    <li>
+      <a href="#graphicDesignTabs"
+         class="graphic-tree-tab-link"
+         data-tab="poster-design">
+        Poster Design
+      </a>
+    </li>
+
+    <li>
+      <a href="#graphicDesignTabs"
+         class="graphic-tree-tab-link"
+         data-tab="logo-design">
+        Logo Design
+      </a>
+    </li>
+
+    <li>
+      <a href="#graphicDesignTabs"
+         class="graphic-tree-tab-link"
+         data-tab="product-design">
+        Product Design
+      </a>
+    </li>
+  </ul>
+
+</details>
+
+  <details open>
+  <summary>Info</summary>
+
+  <ul>
+    <li>
+      <a href="#infoTabs"
+         class="info-tree-tab-link"
+         data-tab="faq">
+        Frequently Asked Questions
+      </a>
+    </li>
+
+    <li>
+      <a href="#infoTabs"
+         class="info-tree-tab-link"
+         data-tab="contact">
+        Contact Me
+      </a>
+    </li>
+  </ul>
+
+</details>
+</ul>
+
+  <h2 class="section-heading">Illustration</h2>
+  <div class="title-bar">
+  <div class="title-bar-text">Projects</div>
+  <div class="title-bar-controls">
+    <button aria-label="any text" class="help" onclick="togglePopup('projectsPopup')"></button>
+    </div>
+    </div>
+<div class="popup-overlay" id="projectsPopup" style="display: none;">
+
+  <div class="window" id="projectsWindow"
+       style="width: 380px;
+              height: 200px;
+              resize: horizontal;
+              overflow: hidden;
+              min-width: 310px;
+              min-height: 180px;
+              max-height: 280px;">
+
+    <div class="title-bar" id="projectsPopuptitlebar">
+      <div class="title-bar-text">Pricing Guide</div>
+
+      <div class="title-bar-controls">
+        <button aria-label="Close"
+                onclick="togglePopup('projectsPopup')"></button>
+      </div>
+    </div>
+
+    <div class="window-body">
+
+      <table class="interactive pricing-table">
+  <colgroup>
+    <col style="width: 34%;">
+    <col style="width: 20%;">
+    <col style="width: 46%;">
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th>Project Type</th>
+      <th>Base Price</th>
+      <th>Negotiability</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>2D Character Design</td>
+      <td>$350</td>
+      <td>Based on Complexity</td>
+    </tr>
+
+    <tr>
+      <td>Character Illustration</td>
+      <td>$75</td>
+      <td>Based on Complexity</td>
+    </tr>
+
+    <tr>
+      <td>Scene Illustrations</td>
+      <td>$200</td>
+      <td>Based on Complexity</td>
+    </tr>
+
+    <tr>
+      <td>Backgrounds</td>
+      <td>$100</td>
+      <td>N/A</td>
+    </tr>
+
+    <tr>
+      <td>Stream Elements</td>
+      <td>$80</td>
+      <td>Based on specific elements</td>
+    </tr>
+  </tbody>
+</table>
+
+      <div class="ok-button-container">
+        <button onclick="togglePopup('projectsPopup')">OK</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('table.interactive').forEach(element => {
+    element.addEventListener('click', (event) => {
+      const highlightedClass = 'highlighted';
+      const isRow = element => element.tagName === 'TR' && element.parentElement.tagName === 'TBODY';
+      const newlySelectedRow = event.composedPath().find(isRow);
+      const previouslySelectedRow = Array.from(newlySelectedRow.parentElement.children).filter(isRow).find(element => element.classList.contains(highlightedClass));
+      if(previouslySelectedRow){
+        previouslySelectedRow.classList.toggle(highlightedClass);
+      }
+
+      if (newlySelectedRow) {
+        newlySelectedRow.classList.toggle(highlightedClass);
+      }
+    })
+  });
+</script>
+      </div>
+    </div>
+  </div>
+    <script>
+    function togglePopup(id) {
+      const popup = document.getElementById(id);
+      if (popup.style.display === "flex") {
+        popup.style.display = "none";
+      } else {
+        popup.style.display = "flex";
+      }
+    }
+  </script>
+  <div class="window-body">
+
+  <menu role="tablist" id="portfolioTabs">
+
+    <li role="tab" aria-selected="true" data-tab="characters">
+      <a href="#characters">Characters</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="backgrounds">
+      <a href="#backgrounds">Backgrounds</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="scenes">
+      <a href="#scenes">Scenes</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="stream-elements">
+      <a href="#stream-elements">Stream Elements</a>
+    </li>
+
+  </menu>
+
+
+  <div class="window" role="tabpanel">
+
+
+ <div class="window-body tab-content" id="characters">
+
+  <div class="status-bar">
+    <h4 class="status-bar-field">Portraits</h4>
+    </div>
+
+  <div class="gallery">
+
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/ywu-portrait.webp" alt="Ywuria Portrait">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/waffors.webp" alt="Waffors Portrait 1">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/waff-puprle.webp" alt="Waffors Portrait 2">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/bijouwled.webp" alt="Koseki Bijou">
+    </div>
+
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/ollie.webp" alt="Kureiji Ollie">
+    </div>
+
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/toga1.webp" alt="Himiko Toga">
+    </div>
+
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/EVA-00-4.webp" alt="Ayanami Rei">
+    </div>
+
+
+  </div>
+
+</div>
+
+
+    <div class="window-body tab-content"
+         id="backgrounds"
+         style="display: none;">
+
+      <div class="gallery">
+       <div class="sunken-panel image-frame">
+      <img src="backgrounds/ghibli-cloud-study.webp" alt="Ghibli Cloud Study">
+    </div>
+      </div>
+
+    </div>
+
+
+ 
+<div class="window-body tab-content"
+     id="scenes"
+     style="display: none;">
+
+  <div class="gallery">
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/sana.webp" alt="Tsukumo Sana Scene">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/ywu-is-here.webp" alt="Ywuria Scene">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="illustrations/waff3.webp" alt="Waffors Scene">
+    </div>
+
+  </div>
+
+</div>
+
+
+    <div class="window-body tab-content"
+         id="stream-elements"
+         style="display: none;">
+
+      <div class="gallery">
+        <p>Stream elements will go here.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="imagePopup" class="image-popup" style="display: none;">
+
+  <div class="window image-popup-window">
+
+    <div class="title-bar" id="imagePopupTitlebar">
+      <div class="title-bar-text" id="imagePopupTitle">
+        Illustration
+      </div>
+
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="closeImagePopup()"></button>
+      </div>
+    </div>
+
+    <div class="window-body">
+
+      <div class="sunken-panel enlarged-image-panel">
+        <img id="enlargedImage" src="" alt="">
+      </div>
+
+      <div class="image-popup-buttons">
+        <button onclick="closeImagePopup()">OK</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<h2 class="section-heading">Graphic Design</h2>
+
+<div class="title-bar">
+  <div class="title-bar-text">Projects</div>
+
+  <div class="title-bar-controls">
+    <button
+      aria-label="any text"
+      class="help"
+      onclick="togglePopup('graphicPricingPopup')">
+    </button>
+  </div>
+</div>
+
+<div class="popup-overlay"
+     id="graphicPricingPopup"
+     style="display: none;">
+
+  <div class="window"
+       id="graphicPricingWindow"
+       style="
+         width: 380px;
+         height: 200px;
+         resize: horizontal;
+         overflow: hidden;
+         min-width: 310px;
+       ">
+
+    <div class="title-bar"
+         id="graphicPricingPopuptitlebar">
+
+      <div class="title-bar-text">
+        Graphic Design Pricing Guide
+      </div>
+
+      <div class="title-bar-controls">
+
+        <button
+          aria-label="Close"
+          onclick="togglePopup('graphicPricingPopup')">
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="window-body">
+
+      <table class="interactive pricing-table">
+
+        <colgroup>
+          <col style="width: 34%;">
+          <col style="width: 20%;">
+          <col style="width: 46%;">
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th>Project Type</th>
+            <th>Base Price</th>
+            <th>Negotiability</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr>
+            <td>Poster Design</td>
+            <td>$75</td>
+            <td>Flat Rate</td>
+          </tr>
+
+           <tr>
+            <td>Logo Design</td>
+            <td>$150</td>
+            <td>Flat Rate</td>
+          </tr>
+
+
+          <tr>
+            <td>Product Design</td>
+            <td>$250</td>
+            <td>Based on Complexity</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <div class="ok-button-container">
+        <button onclick="togglePopup('graphicPricingPopup')">
+          OK
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="window-body">
+
+  <menu role="tablist" id="graphicDesignTabs">
+
+    <li role="tab" aria-selected="true" data-tab="poster-design">
+      <a href="#poster-design">Poster Design</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="logo-design">
+      <a href="#logo-design">Logo Design</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="product-design">
+      <a href="#product-design">Product Design</a>
+    </li>
+
+  </menu>
+
+
+  <div class="window" role="tabpanel">
+
+    <!-- PRODUCT DESIGN -->
+    <div class="window-body graphic-tab-content"
+         id="product-design"
+         style="display: none;">
+
+         <div class="status-bar">
+    <h4 class="status-bar-field">Mock Ups</h4>
+    </div>
+
+      <div class="gallery">
+
+       <div class="sunken-panel image-frame">
+      <img src="products/Grem_set.webp" alt="Grember Set Mock">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="products/gura_full_set.webp" alt="Gura Set Mock">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="products/bae_belt.webp" alt="Baelz Belt Mock">
+    </div>
+
+<div class="sunken-panel image-frame">
+      <img src="products/iceuout nina.webp" alt="Ninajirachi CD Mock 1">
+    </div>
+
+    <div class="sunken-panel image-frame">
+      <img src="products/cd mock girledm nina.webp" alt="Ninajirachi Case CD Mock 2">
+    </div>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- LOGO DESIGN -->
+    <div class="window-body graphic-tab-content"
+         id="logo-design"
+         style="display: none;">
+
+      <div class="gallery">
+
+        <!-- Logo Design images go here -->
+
+      </div>
+
+    </div>
+
+
+    <!-- POSTER DESIGN -->
+    <div class="window-body graphic-tab-content"
+         id="poster-design">
+
+<div class="status-bar">
+    <h4 class="status-bar-field">Posters</h4>
+    </div>
+
+      <div class="gallery">
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/Oni.webp"
+         alt="Oni">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/I.webp"
+         alt="I">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/II.webp"
+         alt="II">
+  </div>
+
+<div class="sunken-panel image-frame">
+    <img src="posters/CRUEL.webp"
+         alt="Cruel">
+  </div>
+
+<div class="sunken-panel image-frame">
+    <img src="posters/DEMONYO.webp"
+         alt="Demonyo">
+  </div>
+
+<div class="sunken-panel image-frame">
+    <img src="posters/EVA-00.webp"
+         alt="EVA-00">
+  </div>
+
+<div class="sunken-panel image-frame">
+    <img src="posters/Great-Beyond.webp"
+         alt="Great Beyond">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/Dolphin.webp"
+         alt="Dolphin">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/Wishing-Moon.webp"
+         alt="Wishing Moon">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/群青.webp"
+         alt="GUNJOU [Ultramarine]">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/wayside.webp"
+         alt="Wayside">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/KUDAN.webp"
+         alt="Kudan">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/ITZY_SURF.webp"
+         alt="Surf">
+  </div>
+
+  <div class="sunken-panel image-frame">
+    <img src="posters/Stardust-Love-Song.webp"
+         alt="Stardust Love Song">
+  </div>
+
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+
+</div>
+
+<h2 class="section-heading">Info</h2>
+
+<div class="window-body">
+
+  <menu role="tablist" id="infoTabs">
+
+    <li role="tab" aria-selected="true" data-tab="faq">
+      <a href="#faq">Frequently Asked Questions</a>
+    </li>
+
+    <li role="tab" aria-selected="false" data-tab="contact">
+      <a href="#contact">Contact Me</a>
+    </li>
+
+  </menu>
+
+
+  <div class="window" role="tabpanel">
+
+    <!-- FAQ -->
+    <div class="window-body info-tab-content"
+         id="faq">
+
+      <div class="status-bar">
+        <h4 class="status-bar-field">Frequently Asked Questions</h4>
+      </div>
+
+      <p>FAQ content goes here.</p>
+
+    </div>
+
+
+    <!-- CONTACT -->
+    <div class="window-body info-tab-content"
+         id="contact"
+         style="display: none;">
+
+      <div class="status-bar">
+        <h4 class="status-bar-field">Contact Me</h4>
+      </div>
+
+<div class="social-buttons">
+
+  <a href="https://x.com/S_16135" target="_blank">
+    <button class="social-button">
+      <img src="icon/twitter.png" alt="Twitter">
+      Twitter
+    </button>
+  </a>
+
+  <a href="https://discordapp.com/users/116688663277993985" target="_blank">
+    <button class="social-button">
+      <img src="icon/discord.png" alt="Discord">
+      Discord
+    </button>
+  </a>
+
+</div>
+
+<form class="contact-form"
+  action="https://formsubmit.co/nighttimebeacon@gmail.com"
+  method="POST">
+
+  <div class="field-row-stacked">
+    <label for="name">Name</label>
+    <input id="name"
+           name="name"
+           type="text"
+           required>
+  </div>
+
+  <div class="field-row-stacked">
+    <label for="email">Email</label>
+    <input id="email"
+           name="email"
+           type="email"
+           required>
+  </div>
+
+  <div class="field-row-stacked">
+    <label for="subject">Subject</label>
+    <input id="subject"
+           name="subject"
+           type="text">
+  </div>
+
+  <div class="field-row-stacked">
+    <label for="message">Message</label>
+    <textarea id="message"
+              name="message"
+              rows="8"
+              required></textarea>
+  </div>
+
+  <div class="form-buttons">
+    <button type="reset">Clear</button>
+    <button type="submit">Send</button>
+  </div>
+
+</form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+const graphicTabs =
+  document.querySelectorAll('#graphicDesignTabs li[role="tab"]');
+
+const graphicTabContents =
+  document.querySelectorAll('.graphic-tab-content');
+
+graphicTabs.forEach(tab => {
+
+  tab.addEventListener('click', function(event) {
+
+    event.preventDefault();
+
+    // Unselect all Graphic Design tabs
+    graphicTabs.forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+    });
+
+    // Hide all Graphic Design content
+    graphicTabContents.forEach(content => {
+      content.style.display = 'none';
+    });
+
+    // Select the clicked tab
+    this.setAttribute('aria-selected', 'true');
+
+    // Show the corresponding content
+    const tabId = this.dataset.tab;
+
+    document.getElementById(tabId).style.display = 'block';
+
+  });
+
+});
+</script>
+<script>
+  const portfolioTabs =
+    document.querySelectorAll('#portfolioTabs li[role="tab"]');
+
+  const tabContents =
+    document.querySelectorAll('.tab-content');
+
+  portfolioTabs.forEach(tab => {
+
+    tab.addEventListener('click', function(event) {
+
+      event.preventDefault();
+
+
+      portfolioTabs.forEach(t => {
+        t.setAttribute('aria-selected', 'false');
+      });
+
+
+      tabContents.forEach(content => {
+        content.style.display = 'none';
+      });
+
+      this.setAttribute('aria-selected', 'true');
+
+
+      const tabId = this.dataset.tab;
+
+      document.getElementById(tabId).style.display = 'block';
+
+    });
+
+  });
+</script>
+<script>
+dragElement(document.getElementById("projectsPopup"));
+
+function dragElement(elmnt) {
+  let pos1 = 0;
+  let pos2 = 0;
+  let pos3 = 0;
+  let pos4 = 0;
+
+  const titleBar = document.getElementById(elmnt.id + "titlebar");
+
+  if (titleBar) {
+    titleBar.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e.preventDefault();
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e.preventDefault();
+
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+const galleryImages = document.querySelectorAll(".gallery img");
+
+let popupZIndex = 10000;
+let popupCount = 0;
+
+galleryImages.forEach(image => {
+  image.addEventListener("click", function () {
+
+    const popup = document.createElement("div");
+    popup.className = "image-popup";
+    popup.style.display = "block";
+    popup.style.zIndex = ++popupZIndex;
+
+    popupCount++;
+
+popup.style.top = (60 + popupCount * 20) + "px";
+popup.style.left = (200 + popupCount * 20) + "px";
+popup.style.transform = "none";
+
+    popup.innerHTML = `
+      <div class="window image-popup-window">
+
+        <div class="title-bar image-popup-titlebar">
+          <div class="title-bar-text">${this.alt}</div>
+
+          <div class="title-bar-controls">
+            <button aria-label="Close"></button>
+          </div>
+        </div>
+
+        <div class="window-body">
+
+          <div class="sunken-panel enlarged-image-panel">
+            <img src="${this.src}" alt="${this.alt}">
+          </div>
+
+
+        </div>
+
+      </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // Close button
+    popup.querySelector('[aria-label="Close"]').addEventListener("click", function () {
+      popup.remove();
+    });
+
+
+    // Bring popup to front when clicked
+    popup.addEventListener("mousedown", function () {
+      popup.style.zIndex = ++popupZIndex;
+    });
+
+    // Make popup draggable
+    makeImagePopupDraggable(
+      popup,
+      popup.querySelector(".image-popup-titlebar")
+    );
+  });
+});
+
+
+function makeImagePopupDraggable(popup, titlebar) {
+  let pos1 = 0;
+  let pos2 = 0;
+  let pos3 = 0;
+  let pos4 = 0;
+
+  titlebar.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e.preventDefault();
+
+    popup.style.zIndex = ++popupZIndex;
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragElement;
+  }
+
+  function dragElement(e) {
+    e.preventDefault();
+
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    popup.style.left = (popup.offsetLeft - pos1) + "px";
+    popup.style.top = (popup.offsetTop - pos2) + "px";
+
+    popup.style.transform = "none";
+  }
+
+  function stopDragging() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+dragPopup(document.getElementById("imagePopup"), document.getElementById("imagePopupTitlebar"));
+
+function dragPopup(popup, titlebar) {
+  let pos1 = 0;
+  let pos2 = 0;
+  let pos3 = 0;
+  let pos4 = 0;
+
+  titlebar.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e.preventDefault();
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragElement;
+  }
+
+  function dragElement(e) {
+    e.preventDefault();
+
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    popup.style.left = (popup.offsetLeft - pos1) + "px";
+    popup.style.top = (popup.offsetTop - pos2) + "px";
+
+    popup.style.transform = "none";
+  }
+
+  function stopDragging() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+</script>
+<script>
+const treeTabLinks = document.querySelectorAll(".tree-tab-link");
+
+treeTabLinks.forEach(link => {
+  link.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const targetTab = this.dataset.tab;
+
+    // Find the corresponding Illustration tab
+    const tab = document.querySelector(
+      `#portfolioTabs li[data-tab="${targetTab}"]`
+    );
+
+    // Trigger the same click as clicking the actual tab
+    if (tab) {
+      tab.click();
+    }
+
+    // Scroll down to the Illustration tabs
+    document
+      .getElementById("portfolioTabs")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+  });
+});
+</script>
+<script>
+const graphicTreeTabLinks =
+  document.querySelectorAll(".graphic-tree-tab-link");
+
+graphicTreeTabLinks.forEach(link => {
+
+  link.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    const targetTab = this.dataset.tab;
+
+    // Find the matching Graphic Design tab
+    const tab = document.querySelector(
+      `#graphicDesignTabs li[data-tab="${targetTab}"]`
+    );
+
+    // Click the actual tab
+    if (tab) {
+      tab.click();
+    }
+
+    // Scroll down to Graphic Design
+    document
+      .getElementById("graphicDesignTabs")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+  });
+
+});
+</script>
+
+<script>
+const infoTabs =
+  document.querySelectorAll('#infoTabs li[role="tab"]');
+
+const infoTabContents =
+  document.querySelectorAll('.info-tab-content');
+
+infoTabs.forEach(tab => {
+
+  tab.addEventListener('click', function(event) {
+
+    event.preventDefault();
+
+    // Unselect all Info tabs
+    infoTabs.forEach(t => {
+      t.setAttribute('aria-selected', 'false');
+    });
+
+    // Hide all Info content
+    infoTabContents.forEach(content => {
+      content.style.display = 'none';
+    });
+
+    // Select clicked tab
+    this.setAttribute('aria-selected', 'true');
+
+    // Show matching content
+    const tabId = this.dataset.tab;
+
+    document.getElementById(tabId).style.display = 'block';
+
+  });
+
+});
+</script>
+
+<script>
+const infoTreeTabLinks =
+  document.querySelectorAll(".info-tree-tab-link");
+
+infoTreeTabLinks.forEach(link => {
+
+  link.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    const targetTab = this.dataset.tab;
+
+    // Find corresponding Info tab
+    const tab = document.querySelector(
+      `#infoTabs li[data-tab="${targetTab}"]`
+    );
+
+    // Activate it
+    if (tab) {
+      tab.click();
+    }
+
+    // Scroll down to Info section
+    document
+      .getElementById("infoTabs")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+  });
+
+});
+</script>
+
+</body>
+</html>
