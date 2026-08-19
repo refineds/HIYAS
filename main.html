@@ -41,6 +41,20 @@
   gap: 10px;
 }
 
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: url("cursors/pointer.png") 5 0, pointer;
+}
+
+.social-button img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .social-link {
   text-decoration: none;
 }
@@ -137,12 +151,20 @@ button.help {
 }
 
 .gallery img {
-  cursor: url("cursors/pen.png") 0 0, crosshair;
+  cursor: url("cursors/pen.png") 0 0, pointer;
 }
 
+#projectsPopuptitlebar,
+#graphicPricingPopuptitlebar,
 #imagePopupTitlebar,
-#projectsPopuptitlebar {
-  cursor: url("cursors/move.png") 16 16, move;
+.image-popup-titlebar {
+  cursor: url("cursors/move.png") 4 4, move !important;
+}
+#projectsPopuptitlebar button,
+#graphicPricingPopuptitlebar button,
+#imagePopupTitlebar button,
+.image-popup-titlebar button {
+  cursor: url("cursors/pointer.png") 5 0, pointer !important;
 }
   body {
     background-color: #C0C0C0; 
@@ -919,7 +941,65 @@ button.help {
         <h4 class="status-bar-field">Frequently Asked Questions</h4>
       </div>
 
-      <p>FAQ content goes here.</p>
+
+<ul class="faq-list">
+
+  <li>
+    <strong>Are your commissions currently open?</strong>
+    <p>
+      Commission availability varies, ask me or check my socials.
+    </p>
+  </li>
+
+  <li>
+    <strong>How do I commission you?</strong>
+    <p>
+      Reach me through the linked socials or via email. Once contact is made
+      we can discuss project specifics.
+    </p>
+  </li>
+
+  <li>
+    <strong>How long does a commission take?</strong>
+    <p>
+      Turnaround time depends on the complexity of the project and my
+      current workload. An estimated timeframe will be provided before
+      work begins.
+    </p>
+  </li>
+
+  <li>
+    <strong>Do you offer revisions?</strong>
+    <p>
+      Yes. Revision terms depend on the project and will be discussed
+      before work begins. Extra charges may accrue with numerous revisions.
+    </p>
+  </li>
+
+  <li>
+    <strong>Can I use commissioned artwork commercially?</strong>
+    <p>
+      Commercial usage must be discussed before the project begins.
+      Personal-use commissions do not include commercial rights.
+    </p>
+  </li>
+
+  <li>
+    <strong>What payment methods do you accept?</strong>
+    <p>
+      PayPal, Venmo, and Cash App are accepted. Payment terms will be
+      discussed before work begins.
+    </p>
+  </li>
+
+  <li>
+    <strong>Can I repost your artwork?</strong>
+    <p>
+      Don't forget to tag me :)
+    </p>
+  </li>
+
+</ul>
 
     </div>
 
