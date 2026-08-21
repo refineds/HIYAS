@@ -45,7 +45,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  cursor: url("cursors/pointer.png") 5 0, pointer;
+  cursor: url("cursors/pointer.png") 0 0, pointer;
 }
 
 .social-button img {
@@ -57,21 +57,6 @@
 
 .social-link {
   text-decoration: none;
-}
-
-.social-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  cursor: url("cursors/pointer.png") 5 0, pointer;
-}
-
-.social-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: url("cursors/pointer.png") 0 0, pointer;
 }
 
 .tree-view a {
@@ -156,7 +141,6 @@ button.help {
 
 #projectsPopuptitlebar button,
 #graphicPricingPopuptitlebar button,
-#imagePopupTitlebar button,
 .image-popup-titlebar button {
   cursor: url("cursors/pointer.png") 5 0, pointer !important;
 }
@@ -233,12 +217,6 @@ button.help {
   object-fit: contain;
   display: block;
 }
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 12px;
-  padding: 8px;
-}
 
 .image-frame {
   padding: 6px;
@@ -312,7 +290,9 @@ button.help {
   </ul>
 
 </details>
+  </li>
 
+  <li>
 <details open>
   <summary>Graphic Design</summary>
 
@@ -343,7 +323,9 @@ button.help {
   </ul>
 
 </details>
+  </li>
 
+  <li>
   <details open>
   <summary>Info</summary>
 
@@ -366,6 +348,7 @@ button.help {
   </ul>
 
 </details>
+  </li>
 </ul>
 
   <h2 class="section-heading">Illustration</h2>
@@ -470,9 +453,6 @@ button.help {
     })
   });
 </script>
-      </div>
-    </div>
-  </div>
     <script>
     function togglePopup(id) {
       const popup = document.getElementById(id);
@@ -635,36 +615,6 @@ button.help {
 
       <div class="gallery">
         <p>Stream elements will go here.</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div id="imagePopup" class="image-popup" style="display: none;">
-
-  <div class="window image-popup-window">
-
-    <div class="title-bar" id="imagePopupTitlebar">
-      <div class="title-bar-text" id="imagePopupTitle">
-        Illustration
-      </div>
-
-      <div class="title-bar-controls">
-        <button aria-label="Close" onclick="closeImagePopup()"></button>
-      </div>
-    </div>
-
-    <div class="window-body">
-
-      <div class="sunken-panel enlarged-image-panel">
-        <img id="enlargedImage" src="" alt="">
-      </div>
-
-      <div class="image-popup-buttons">
-        <button onclick="closeImagePopup()">OK</button>
       </div>
 
     </div>
@@ -1013,8 +963,6 @@ button.help {
     </div>
 
   </div>
-
-</div>
 
 <h2 class="section-heading">Info</h2>
 
@@ -1397,48 +1345,6 @@ function makeImagePopupDraggable(popup, titlebar) {
     e.preventDefault();
 
     popup.style.zIndex = ++popupZIndex;
-
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-
-    document.onmouseup = stopDragging;
-    document.onmousemove = dragElement;
-  }
-
-  function dragElement(e) {
-    e.preventDefault();
-
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-
-    popup.style.left = (popup.offsetLeft - pos1) + "px";
-    popup.style.top = (popup.offsetTop - pos2) + "px";
-
-    popup.style.transform = "none";
-  }
-
-  function stopDragging() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-</script>
-<script>
-dragPopup(document.getElementById("imagePopup"), document.getElementById("imagePopupTitlebar"));
-
-function dragPopup(popup, titlebar) {
-  let pos1 = 0;
-  let pos2 = 0;
-  let pos3 = 0;
-  let pos4 = 0;
-
-  titlebar.onmousedown = dragMouseDown;
-
-  function dragMouseDown(e) {
-    e.preventDefault();
 
     pos3 = e.clientX;
     pos4 = e.clientY;
