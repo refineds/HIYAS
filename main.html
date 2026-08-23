@@ -234,7 +234,126 @@ button.help {
 </style>
   <title>Hiyas</title>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
+
+  <style>
+    /* ============ Mobile / touch overrides ============ */
+    /* Placed after 98.css on purpose so these rules win the cascade
+       without needing !important everywhere. */
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a, button, summary, li[role="tab"], .gallery img {
+      touch-action: manipulation;
+    }
+
+    @media (max-width: 700px) {
+
+      body {
+        font-size: 14px;
+      }
+
+      /* Popups: always centered and capped to viewport on small screens.
+         !important is required here because these elements also get
+         inline left/top/transform set by JS during drag/positioning. */
+      .popup-overlay {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      #projectsWindow,
+      #graphicPricingWindow {
+        width: 90vw !important;
+        max-width: 90vw !important;
+        height: auto !important;
+        max-height: 80vh !important;
+        resize: none !important;
+      }
+
+      #projectsWindow .window-body,
+      #graphicPricingWindow .window-body {
+        max-height: 65vh;
+      }
+
+      .image-popup {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      .image-popup-window {
+        max-width: 92vw;
+      }
+
+      .enlarged-image-panel img {
+        max-width: 86vw;
+        max-height: 62vh;
+      }
+
+      /* Bigger tap targets for title-bar icon buttons (minimize/maximize/
+         close/help) without changing their look, just their size. */
+      .title-bar-controls button {
+        width: 24px !important;
+        height: 22px !important;
+      }
+
+      /* Tabs: allow wrapping instead of overflowing off-screen, and
+         make each tab tall enough to comfortably tap. */
+      menu[role="tablist"] {
+        flex-wrap: wrap;
+      }
+
+      menu[role="tablist"] li[role="tab"] {
+        min-height: 40px;
+      }
+
+      menu[role="tablist"] li[role="tab"] a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      /* Sidebar tree links get more breathing room to tap accurately. */
+      .tree-view a {
+        display: inline-block;
+        padding: 4px 0;
+      }
+
+      /* Gallery: smaller cells so more than one column still fits,
+         and a shorter fixed height so scrolling isn't excessive. */
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 8px;
+      }
+
+      .gallery img,
+      .image-frame img {
+        height: 160px;
+      }
+
+      .section-heading {
+        font-size: 22px;
+      }
+
+      .contact-form {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .social-buttons {
+        margin-left: 0;
+        flex-wrap: wrap;
+      }
+
+      .pricing-table {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body> 
@@ -462,6 +581,13 @@ button.help {
         popup.style.display = "flex";
       }
     }
+  </script>
+  <script>
+    // Shared across all later scripts on this page (classic scripts share
+    // top-level scope). Used to skip mouse-drag wiring on touch devices,
+    // where popups are kept centered by CSS instead.
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+      || 'ontouchstart' in window;
   </script>
   <div class="window-body">
 
@@ -1256,7 +1382,7 @@ function dragElement(elmnt) {
 
   const titleBar = document.getElementById(elmnt.id + "titlebar");
 
-  if (titleBar) {
+  if (titleBar && !isTouch) {
     titleBar.onmousedown = dragMouseDown;
   }
 
@@ -1362,7 +1488,9 @@ function makeImagePopupDraggable(popup, titlebar) {
   let pos3 = 0;
   let pos4 = 0;
 
-  titlebar.onmousedown = dragMouseDown;
+  if (!isTouch) {
+    titlebar.onmousedown = dragMouseDown;
+  }
 
   function dragMouseDown(e) {
     e.preventDefault();
