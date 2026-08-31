@@ -1,49 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hiyas</title>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="https://unpkg.com/98.css" />
-  <style>
-    html,
+<title>Hiyas</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://unpkg.com/98.css" />
+<style>
+html,
 body {
-  cursor: url("/HIYAS/cursors/arrow.cur"), default;
+cursor: url("/HIYAS/cursors/arrow.cur"), default;
 }
-
-
 
 a,
 button,
 summary,
 li[role="tab"] {
-  cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
+cursor: url("/HIYAS/cursors/pointer.cur"), pointer;
 }
-    body {
-      background-color: #C0C0C0;
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
+body {
+background-color: #C0C0C0;
+height: 100vh;
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+
+.window {
+  position: absolute;
+}
+
+.title-bar {
+  cursor: move;
+  touch-action: none;
+}
+</style>
 </head>
 
 <body>
-  <div class="window" style="margin: 32px; width: 250px;">
-    <div class="title-bar">
-      <div class="title-bar-text">
+<div class="window" id="win" style="margin: 32px; width: 250px;">
+<div class="title-bar">
+<div class="title-bar-text">
        Welcome
-      </div>
-    </div>
-    <div class="window-body">
-      <p>Hiyas (n.)</p>
-      
-    <p>Gem, jewel, or precious ornament. </p>
-    <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
-    <button onclick="window.location='main.html'">Enter</button>
-    </div>
-    </div>
-  </div>
+</div>
+</div>
+<div class="window-body">
+<p>Hiyas (n.)</p>
+<p>Gem, jewel, or precious ornament. </p>
+<div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+<button onclick="window.location='main.html'">Enter</button>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  const win = document.getElementById('win');
+  const titleBar = win.querySelector('.title-bar');
+
+  let offsetX = 0;
+  let offsetY = 0;
+  let dragging = false;
+
+  // Convert flex-centered position into an absolute top/left
+  // the first time a drag starts, so it doesn't jump.
+  function lockPosition() {
+    const rect = win.getBoundingClientRect();
+    win.style.margin = '0';
+    win.style.left = rect.left + 'px';
+    win.style.top = rect.top + 'px';
+  }
+
+  function clamp(x, y) {
+    const rect = win.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+    return {
+      x: Math.min(Math.max(x, 0), Math.max(maxX, 0)),
+      y: Math.min(Math.max(y, 0), Math.max(maxY, 0))
+    };
+  }
+
+  function startDrag(clientX, clientY) {
+    lockPosition();
+    dragging = true;
+    const rect = win.getBoundingClientRect();
+    offsetX = clientX - rect.left;
+    offsetY = clientY - rect.top;
+    document.body.style.userSelect = 'none';
+  }
+
+  function moveDrag(clientX, clientY) {
+    if (!dragging) return;
+    const pos = clamp(clientX - offsetX, clientY - offsetY);
+    win.style.left = pos.x + 'px';
+    win.style.top = pos.y + 'px';
+  }
+
+  function endDrag() {
+    dragging = false;
+    document.body.style.userSelect = '';
+  }
+
+  // Mouse events
+  titleBar.addEventListener('mousedown', function (e) {
+    startDrag(e.clientX, e.clientY);
+  });
+  document.addEventListener('mousemove', function (e) {
+    moveDrag(e.clientX, e.clientY);
+  });
+  document.addEventListener('mouseup', endDrag);
+
+  // Touch events
+  titleBar.addEventListener('touchstart', function (e) {
+    const t = e.touches[0];
+    startDrag(t.clientX, t.clientY);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    const t = e.touches[0];
+    moveDrag(t.clientX, t.clientY);
+  }, { passive: true });
+  document.addEventListener('touchend', endDrag);
+
+  // Re-clamp on window resize so it never ends up stuck off-screen
+  window.addEventListener('resize', function () {
+    if (win.style.left === '' || win.style.top === '') return;
+    const pos = clamp(parseFloat(win.style.left), parseFloat(win.style.top));
+    win.style.left = pos.x + 'px';
+    win.style.top = pos.y + 'px';
+  });
+})();
+</script>
 </body>
 </html>
